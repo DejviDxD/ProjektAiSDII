@@ -43,19 +43,27 @@ class FF:
 
 
 
-
-vertex,edges = list(map(int,input().split()))
-graph = [[0 for _ in range (vertex)] for _ in range (vertex)]
-
-for i in range (edges):
-    x,y,val = list(map(int,input().split()))
-    graph[x][y] = val
-source = 0
-sink = vertex-1
-for i in range(vertex):
-    print(graph[i])
-g = FF(graph)
-print("Maksymalna przepustowosc w sieci wynosi %d " % g.ford_fukelson(source, sink))
+if __name__ == "__main__":
+    vertex,edges = list(map(int,input().split()))
+    if edges < vertex - 1:
+        print("Nie ma wystarczajaco krawedzi w sieci")
+        exit(0)
+    graph = [[0 for _ in range (vertex)] for _ in range (vertex)]
+    i = 0
+    while i < edges:
+        x,y,val = list(map(int,input().split()))
+        if (x > vertex - 1 or x < 0) or (y > vertex - 1 or y < 0):
+            print("Podany wierzcholek jest poza zasiegiem sieci")
+            print("Podaj inna krawedz")
+        else:
+            graph[x][y] = val
+            i = i + 1
+    source = 0
+    sink = vertex-1
+    for i in range(vertex):
+        print(graph[i])
+    g = FF(graph)
+    print("Maksymalna przepustowosc w sieci wynosi %d " % g.ford_fukelson(source, sink))
 
 
 
