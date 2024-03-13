@@ -22,23 +22,24 @@ class FF:
         return False
     def ford_fukelson(self, source, sink):
         parent = [-1]*self.ROW
-        maks_przepustowosc = 0
+
+        max_capacity = 0
         while(self.bfs(source, sink, parent)):
-            sciezka_przepustowosci = float('inf')
+            path_capacity = float('inf')
             s = sink
             while s != source:
-                sciezka_przepustowosci = min(sciezka_przepustowosci, self.graf[parent[s]][s])
+                path_capacity = min(path_capacity, self.graf[parent[s]][s])
                 s = parent[s]
-            maks_przepustowosc += sciezka_przepustowosci
+            max_capacity += path_capacity
 
             v = sink
             while v != source:
                 u = parent[v]
-                self.graf[u][v] -= sciezka_przepustowosci
-                self.graf[v][u] += sciezka_przepustowosci
+                self.graf[u][v] -= path_capacity
+                self.graf[v][u] += path_capacity
                 v = u
 
-        return maks_przepustowosc
+        return max_capacity
 
 
 
@@ -54,7 +55,7 @@ sink = vertex-1
 for i in range(vertex):
     print(graph[i])
 g = FF(graph)
-print("The maximum possible flow is %d " % g.ford_fukelson(source, sink))
+print("Maksymalna przepustowosc w sieci wynosi %d " % g.ford_fukelson(source, sink))
 
 
 
