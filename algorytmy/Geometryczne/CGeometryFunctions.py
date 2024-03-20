@@ -9,6 +9,13 @@ class GeometryFunctions:
                 return True
             else:
                 return False
+
+    def isHalfLineCutEdge(self, p : Point, a : Point , b: Point):
+        if((a.x <= p.x and p.x < b.x) or (a.x >= p.x and p.y > (a.y - b.y)/ (a.x - b.x) * (p.x - a.x) + a.y)):
+            return True
+        return False
+    # def onPolygon(self):
+
 if __name__ == "__main__":
     p1 = Point(-4,0)
     p2 = Point(-4,6)
