@@ -43,6 +43,7 @@ class GeometryFunctions:
 
 
 
+
 if __name__ == "__main__":
     p1 = Point(1,1)
     p2 = Point(5,5)
