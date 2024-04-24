@@ -11,8 +11,7 @@ from Geometryczne.CPoint import Point
 class Graham_hull:
     def __init__(self, points):
         self.points = points
-    def delete_hull_pictures(self):
-        directory = 'Hull_pictures/'
+    def delete_hull_pictures(self,directory):
         for filename in os.listdir(directory):
             if filename.startswith('hull_'):
                 os.remove(os.path.join(directory,filename))
@@ -55,7 +54,7 @@ class Graham_hull:
                 return 1
 
 
-    def graham_scan(self):
+    def graham_scan(self,directory):
         p0, index = self.find_min_y()
 
         self.points[0],self.points[index] = self.points[index],self.points[0]
@@ -86,14 +85,14 @@ class Graham_hull:
                         break;
                     else:
                         stack.pop()
-                        self.plot_hull(stack,points[i])
+                        self.plot_hull(stack,self.points[i])
                         j += 1
-                        plt.savefig(f'Hull_pictures/hull_step{j}.png')
+                        plt.savefig(f'{directory}/hull_step{j}.png')
                         stack_size -= 1
                 stack.append(sorted_polar[i])
-                self.plot_hull(stack,points[i])
+                self.plot_hull(stack,self.points[i])
                 j += 1
-                plt.savefig(f'Hull_pictures/hull_step{j}.png')
+                plt.savefig(f'{directory}/hull_step{j}.png')
                 stack_size += 1
             return stack
 
@@ -123,10 +122,11 @@ if __name__ == "__main__":
     points.append(Point(5, 5))
     points.append(Point(9, 6))
     graham_hull = Graham_hull(points)
-    graham_hull.delete_hull_pictures()
+    directory = 'Hull_pictures/'
+    graham_hull.delete_hull_pictures(directory)
     plt.scatter([p.x for p in points], [p.y for p in points], color="blue")
     plt.savefig(f'Hull_pictures/hull_start.png')
-    hull = graham_hull.graham_scan()
+    hull = graham_hull.graham_scan(directory)
     print("Punkty otoczki wypukłej")
     for point in hull:
         print(f"{point.y} , {point.x}")

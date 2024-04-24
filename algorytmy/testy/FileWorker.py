@@ -42,5 +42,5 @@ if __name__ == "__main__":
     filename = input("podaj nazwe pliku: ")
     fromfile = FromFile()
     fromfile.importformFile(filename)
-    #fromfile.printVertexTab()
-    #fromfile.printPoints()
+    # fromfile.printVertexTab()
+    print(fromfile.pointsTab)
