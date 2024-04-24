@@ -99,11 +99,11 @@ class Graham_hull:
 
     def plot_hull(self,hull,point):
         plt.clf()
-        plt.scatter([p.x for p in self.points], [p.y for p in self.points], color="blue")
+        plt.scatter([p.x for p in self.points], [p.y for p in self.points], color="black")
         hull_points = hull.copy()
         hull_points.append(point)
         hull_points.append(hull[0])
-        plt.plot([p.x for p in hull], [p.y for p in hull], color="red")
+        plt.plot([p.x for p in hull], [p.y for p in hull], color="blue")
         plt.xlabel('X')
         plt.ylabel('Y')
         plt.title("Otoczka wypukła")
@@ -124,7 +124,11 @@ if __name__ == "__main__":
     graham_hull = Graham_hull(points)
     directory = 'Hull_pictures/'
     graham_hull.delete_hull_pictures(directory)
+<<<<<<< HEAD
     plt.scatter([p.x for p in points], [p.y for p in points], color="blue")
+=======
+    plt.scatter([p.x for p in points], [p.y for p in points], color="black")
+>>>>>>> graham_hull
     plt.savefig(f'Hull_pictures/hull_start.png')
     hull = graham_hull.graham_scan(directory)
     print("Punkty otoczki wypukłej")
@@ -132,7 +136,11 @@ if __name__ == "__main__":
         print(f"{point.y} , {point.x}")
 
     hull.append(hull[0])
+<<<<<<< HEAD
     plt.plot([p.x for p in hull], [p.y for p in hull], color="red")
+=======
+    plt.plot([p.x for p in hull], [p.y for p in hull], color="blue")
+>>>>>>> graham_hull
     plt.xlabel('X')
     plt.ylabel('Y')
     plt.title("Otoczka wypukła")

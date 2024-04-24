@@ -21,7 +21,7 @@ if __name__ == "__main__":
     graham_hull = Graham_hull(points)
     directory = 'Graham/Hull_pictures'
     graham_hull.delete_hull_pictures(directory)
-    plt.scatter([p.x for p in points], [p.y for p in points], color="blue")
+    plt.scatter([p.x for p in points], [p.y for p in points], color="black")
     plt.savefig(f'{directory}/hull_start.png')
     hull = graham_hull.graham_scan(directory)
     print("Punkty otoczki wypukłej")
@@ -29,9 +29,17 @@ if __name__ == "__main__":
         print(f"{point.y} , {point.x}")
 
     hull.append(hull[0])
-    plt.plot([p.x for p in hull], [p.y for p in hull], color="red")
+    plt.plot([p.x for p in hull], [p.y for p in hull], color="blue")
     plt.xlabel('X')
     plt.ylabel('Y')
     plt.title("Otoczka wypukła")
     plt.savefig(f'{directory}/hull_step_final.png')
+    factory = points[0]
+    if(factory in hull):
+        for i in range(1,len(points)):
+            if points[i] not in hull:
+                factory = points[i]
+                break
+    plt.scatter(factory.x,factory.y, color="red")
+    plt.savefig(f'{directory}/hull_step_final_factory.png')
     plt.show()
