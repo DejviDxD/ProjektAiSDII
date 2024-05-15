@@ -9,7 +9,6 @@ if __name__ == "__main__":
     path = os.path.dirname(os.path.abspath(__file__))
     filename = input("Podaj nazwe testu: ")
     file_directory = f"/testy/{filename}"
-    print(file_directory)
     file_worker = FromFile()
     file_worker.importformFile(path + file_directory)
     points = file_worker.pointsTab
