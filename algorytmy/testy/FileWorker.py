@@ -1,4 +1,7 @@
-from algorytmy.Geometryczne.CPoint import Point
+import sys
+sys.path.append("..")
+
+from Geometryczne.CPoint import Point
 class FromFile:
 
     def __init__(self):
