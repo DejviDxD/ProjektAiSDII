@@ -48,18 +48,20 @@ if __name__ == "__main__":
     if edges < vertex - 1:
         print("Nie ma wystarczajaco krawedzi w sieci")
         exit(0)
-    graph = [[0 for _ in range (vertex)] for _ in range (vertex)]
+    graph = [[0 for _ in range (vertex+2)] for _ in range (vertex+2)]
     i = 0
     while i < edges:
-        x,y,val = list(map(int,input().split()))
-        if (x > vertex - 1 or x < 0) or (y > vertex - 1 or y < 0):
+        x,y = list(map(int,input().split()))
+        graph[0][x] = 1
+        graph[y][vertex+1] = 1
+        if (x > vertex + 1 or x < 0) or (y > vertex + 1 or y < 0):
             print("Podany wierzcholek jest poza zasiegiem sieci")
             print("Podaj inna krawedz")
         else:
-            graph[x][y] = val
+            graph[x][y] = 1
             i = i + 1
     source = 0
-    sink = vertex-1
+    sink = vertex+1
     for i in range(vertex):
         print(graph[i])
     g = FF(graph)

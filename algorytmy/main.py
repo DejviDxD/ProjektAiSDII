@@ -4,6 +4,8 @@ from testy.FileWorker import FromFile
 from BoyerMoore.ChangeText import ChangeText
 from BoyerMoore.Boyer_Moore import BoyerMoore
 from Huffmann.Huffmann import Huffman,huffman_decoding,huffman_encoding
+from Problem1.PokrycieWierzcholkow import Graf
+from Problem1.Przepustowosc import Through_Put
 
 import matplotlib.pyplot as plt
 import os
@@ -15,6 +17,10 @@ if __name__ == "__main__":
     file_worker = FromFile()
     file_worker.importfromFileProblemOne(path + file_directory)
     points = file_worker.pointsTab
+    plaszczaki = file_worker.vertexTab
+    print(plaszczaki)
+
+
     graham_hull = Graham_hull(points)
     directory = path + '/Graham/Hull_pictures'
     graham_hull.delete_hull_pictures(directory)
@@ -42,34 +48,47 @@ if __name__ == "__main__":
     plt.savefig(f'{directory}/hull_step_final_factory.png')
     plt.show()
 
-    filename = input("Podaj nazwe testu:")
 
-    file_directory = f"/testy/problem_two/{filename}"
-    file_worker.importfromFileProblemTwo(path + file_directory)
-    melodyTab = file_worker.melodyTab
+    graf = Graf(hull,factory)
+    graf.make_graf()
 
-    for i in range(0,len(melodyTab)):
-        pattern_tab = []
-        melody = BoyerMoore(melodyTab[i],"poli")
-        melody.BM(pattern_tab)
-        changeText = ChangeText(melodyTab[i],pattern_tab)
-        changeText.change()
-        melodyTab[i] = changeText.text
+    through_put = Through_Put(plaszczaki)
+    przepustowosc = through_put.count_through_put()
+    print(przepustowosc)
 
-    print("Naprawiona melodia:\n")
-    for text in melodyTab:
-        print(text,end='')
-    print()
 
-    encoded_text_tab = []
-    for text in melodyTab:
-        encoded_text, codebook = huffman_encoding(text)
-        encoded_text_tab.append(encoded_text)
-    print()
-    print("Zakodowana melodia:\n")
-    for text in encoded_text_tab:
-        print(text)
-    print()
+    # graf.print_graf()
+    
+
+
+    # filename = input("Podaj nazwe testu:")
+
+    # file_directory = f"/testy/problem_two/{filename}"
+    # file_worker.importfromFileProblemTwo(path + file_directory)
+    # melodyTab = file_worker.melodyTab
+
+    # for i in range(0,len(melodyTab)):
+    #     pattern_tab = []
+    #     melody = BoyerMoore(melodyTab[i],"poli")
+    #     melody.BM(pattern_tab)
+    #     changeText = ChangeText(melodyTab[i],pattern_tab)
+    #     changeText.change()
+    #     melodyTab[i] = changeText.text
+
+    # print("Naprawiona melodia:\n")
+    # for text in melodyTab:
+    #     print(text,end='')
+    # print()
+
+    # encoded_text_tab = []
+    # for text in melodyTab:
+    #     encoded_text, codebook = huffman_encoding(text)
+    #     encoded_text_tab.append(encoded_text)
+    # print()
+    # print("Zakodowana melodia:\n")
+    # for text in encoded_text_tab:
+    #     print(text)
+    # print()
 
     
 

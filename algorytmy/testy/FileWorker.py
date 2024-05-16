@@ -7,6 +7,7 @@ class FromFile:
     def __init__(self):
         self.pointsTab = []
         self.melodyTab = []
+        self.vertexTab = []
 
     def printPoints(self):
         for i in self.pointsTab:
@@ -20,7 +21,7 @@ class FromFile:
         file = open(filename, 'r')
         line = file.readline()
         numberOfVertex = int(line)
-        self.vertexTab = [[0 for _ in range(numberOfVertex)] for _ in range(numberOfVertex)]
+        self.vertexTab = [[0 for _ in range(numberOfVertex+2)] for _ in range(numberOfVertex+2)]
         line = file.readline()
         numberOfEdges = int(line)
         for i in range(numberOfEdges):
@@ -28,8 +29,10 @@ class FromFile:
             edge = line.split(" ")
             edge[0] = int(edge[0])
             edge[1] = int(edge[1])
-            self.vertexTab[edge[0] - 1][edge[1] - 1] = 1
-            self.vertexTab[edge[1] - 1][edge[0] - 1] = 1
+            self.vertexTab[0][edge[0]] = 1
+            self.vertexTab[edge[1]][numberOfVertex+1] = 1
+            self.vertexTab[edge[0]][edge[1]] = 1
+            # self.vertexTab[edge[1]][edge[0]] = 1
         line = file.readline()
         numberOfPoints = int(line)
         for i in range(numberOfPoints):
