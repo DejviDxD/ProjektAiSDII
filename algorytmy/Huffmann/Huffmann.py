@@ -2,7 +2,7 @@ import heapq
 from collections import defaultdict, Counter
 
 
-class Node:
+class Huffman:
     def __init__(self, char, freq):
         self.char = char
         self.freq = freq
@@ -18,7 +18,7 @@ def build_huffman_tree(text):
     frequency = Counter(text)
 
     # Tworzenie kolejki priorytetowej z węzłami
-    priority_queue = [Node(char, freq) for char, freq in frequency.items()]
+    priority_queue = [Huffman(char, freq) for char, freq in frequency.items()]
     heapq.heapify(priority_queue)
 
     # Budowanie drzewa Huffmana
@@ -26,7 +26,7 @@ def build_huffman_tree(text):
         left = heapq.heappop(priority_queue)
         right = heapq.heappop(priority_queue)
 
-        merged = Node(None, left.freq + right.freq)
+        merged = Huffman(None, left.freq + right.freq)
         merged.left = left
         merged.right = right
 
@@ -66,10 +66,11 @@ def huffman_decoding(encoded_data, codebook):
 
 
 # Przykład użycia
-text = "lorem ipsum men"
-encoded_text, codebook = huffman_encoding(text)
-decoded_text = huffman_decoding(encoded_text, codebook)
+if __name__ == "__main__":
+    text = "W laboratorium chemik uzywal polimerow do stworzenia nowej polisyntezatorowej substancji."
+    encoded_text, codebook = huffman_encoding(text)
+    decoded_text = huffman_decoding(encoded_text, codebook)
 
-print("Original text:", text)
-print("Encoded text:", encoded_text)
-print("Decoded text:", decoded_text)
+    print("Original text:", text)
+    print("Encoded text:", encoded_text)
+    print("Decoded text:", decoded_text)

@@ -6,6 +6,7 @@ class FromFile:
 
     def __init__(self):
         self.pointsTab = []
+        self.melodyTab = []
 
     def printPoints(self):
         for i in self.pointsTab:
@@ -15,7 +16,7 @@ class FromFile:
         for i in self.vertexTab:
             print(i)
 
-    def importformFile(self,filename):
+    def importfromFileProblemOne(self, filename):
         file = open(filename, 'r')
         line = file.readline()
         numberOfVertex = int(line)
@@ -40,10 +41,21 @@ class FromFile:
             self.pointsTab.append(newpoint)
         file.close()
 
+    def importfromFileProblemTwo(self,filename):
+        file = open(filename, 'r')
+        while True:
+            line = file.readline()
+            if(len(line) == 0):
+                break
+            self.melodyTab.append(line)
+
+
+
+
 
 if __name__ == "__main__":
     filename = input("podaj nazwe pliku: ")
     fromfile = FromFile()
-    fromfile.importformFile(filename)
+    fromfile.importfromFileProblemOne(filename)
     # fromfile.printVertexTab()
     print(fromfile.pointsTab)

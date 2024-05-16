@@ -27,7 +27,7 @@ class BoyerMoore:
                 j = bpos[j]
 
 
-    def BM(self):
+    def BM(self, pattern_tab):
         s = 0
         m = len(self.pattern)
         n = len(self.text)
@@ -42,7 +42,7 @@ class BoyerMoore:
             while j >= 0 and self.pattern[j] == self.text[s + j]:
                 j -= 1
             if j < 0:
-                print("Wzorzec wystepuje z przesunieciem = %d" % s)
+                pattern_tab.append(s)
                 pp += s
                 s += shift[0]
             else:
@@ -51,7 +51,9 @@ class BoyerMoore:
             print("Wzorzec nie wystepuje w tekscie")
 
 if __name__ == "__main__":
-    text = "ABAAAABAACD"
-    pat = "ABA"
+    text = "W laboratorium chemik używał polimerów do stworzenia nowej polisyntezatorowej substancji."
+    pat = "poli"
+    pattern_tab = []
     search = BoyerMoore(text,pat)
-    search.BM()
+    search.BM(pattern_tab)
+    print(pattern_tab)
