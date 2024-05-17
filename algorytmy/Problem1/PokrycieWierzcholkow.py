@@ -27,11 +27,13 @@ class Graf:
 
     def min_distance_from_factory(self):
         min_distance = math.sqrt(math.pow(self.graf[self.factory][0].x-self.factory.x,2) + math.pow(self.graf[self.factory][0].y -self.factory.y,2))
+        min_distance_point = self.graf[self.factory][0]
         for index in range(1,len(self.graf[self.factory])):
             distance = math.sqrt(math.pow(self.graf[self.factory][index].x-self.factory.x,2) + math.pow(self.graf[self.factory][index].y -self.factory.y,2))
             if(distance < min_distance):
                 min_distance = distance
-        return min_distance
+                min_distance_point = self.graf[self.factory][index]
+        return min_distance_point,min_distance
 
 if __name__ == "__main__":
 

@@ -52,7 +52,8 @@ if __name__ == "__main__":
     graf = Graf(hull,factory)
     graf.make_graf()
 
-    min_distance = graf.min_distance_from_factory()
+    min_distance_point,min_distance = graf.min_distance_from_factory()
+    print(min_distance_point.x,min_distance_point.y)
     print(min_distance)
 
     through_put = Through_Put(plaszczaki)
