@@ -52,9 +52,15 @@ if __name__ == "__main__":
     graf = Graf(hull,factory)
     graf.make_graf()
 
-    min_distance_point,min_distance = graf.min_distance_from_factory()
-    print(min_distance_point.x,min_distance_point.y)
-    print(min_distance)
+    C = graf.apical_coverage()
+    print(C)
+    for i in C:
+        print()
+        print(i.x, i.y)
+        for j in C[i]:
+            print(j.x, j.y, end='')
+            print(" ", end='')
+        print()
 
     through_put = Through_Put(plaszczaki)
     przepustowosc = through_put.count_through_put()

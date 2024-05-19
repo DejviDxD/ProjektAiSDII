@@ -35,6 +35,19 @@ class Graf:
                 min_distance_point = self.graf[self.factory][index]
         return min_distance_point,min_distance
 
+    def apical_coverage(self):
+        C = {}
+        while len(self.graf)-1 != 0:
+            min_distance_point,min_distance = self.min_distance_from_factory()
+            C[min_distance_point] = []
+            C[min_distance_point].append(self.factory)
+            C[self.factory] = []
+            C[self.factory].append(min_distance_point)
+            del self.graf[min_distance_point]
+            self.hull.pop(self.hull.index(min_distance_point))
+            self.graf[self.factory] = self.hull
+        del C[self.factory]
+        return C
 if __name__ == "__main__":
 
     x = Graf()
