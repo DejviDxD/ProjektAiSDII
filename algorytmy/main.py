@@ -42,20 +42,29 @@ if __name__ == "__main__":
     plt.savefig(f'{directory}/hull_step_final_factory.png')
     plt.show()
 
+
+
+
     filename = input("Podaj nazwe testu:")
 
     file_directory = f"/testy/problem_two/{filename}"
     file_worker.importfromFileProblemTwo(path + file_directory)
     melodyTab = file_worker.melodyTab
 
-    for i in range(0,len(melodyTab)):
-        pattern_tab = []
-        melody = BoyerMoore(melodyTab[i],"poli")
-        melody.BM(pattern_tab)
-        changeText = ChangeText(melodyTab[i],pattern_tab)
-        changeText.change()
-        melodyTab[i] = changeText.text
+    patterns_tab = {}
+    word = input("Jaki wzorzec chcesz dodatkowo zmienić:")
+    pattern = input("Na jakie słowo:")
+    patterns_tab[word] = pattern
+    patterns_tab["poli"] = "boli"
 
+    for word,pattern in patterns_tab.items():
+        for i in range(0,len(melodyTab)):
+            pattern_tab = []
+            melody = BoyerMoore(melodyTab[i],word)
+            melody.BM(pattern_tab)
+            changeText = ChangeText(melodyTab[i],pattern_tab,pattern,word)
+            changeText.change()
+            melodyTab[i] = changeText.text
     print("Naprawiona melodia:\n")
     for text in melodyTab:
         print(text,end='')
