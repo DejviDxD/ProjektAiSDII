@@ -62,8 +62,6 @@ if __name__ == "__main__":
             i = i + 1
     source = 0
     sink = vertex+1
-    for i in range(vertex):
-        print(graph[i])
     g = FF(graph)
     print("Maksymalna przepustowosc w sieci wynosi %d " % g.ford_fukelson(source, sink))
 

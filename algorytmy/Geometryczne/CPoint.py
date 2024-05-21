@@ -5,3 +5,5 @@ class Point:
 
     def subtract(self, p):
         return Point(self.x - p.x, self.y - p.y)
+    def __str__(self) -> str:
+        return str(self.x)+" "+str(self.y)

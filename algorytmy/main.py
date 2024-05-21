@@ -18,7 +18,6 @@ if __name__ == "__main__":
     file_worker.importfromFileProblemOne(path + file_directory)
     points = file_worker.pointsTab
     plaszczaki = file_worker.vertexTab
-    print(plaszczaki)
 
 
     graham_hull = Graham_hull(points)
@@ -43,29 +42,44 @@ if __name__ == "__main__":
             if points[i] not in hull:
                 factory = points[i]
                 break
-    plt.pause(0.5)
+    plt.pause(0.1)
     plt.scatter(factory.x,factory.y, color="red")
     plt.savefig(f'{directory}/hull_step_final_factory.png')
-    plt.show()
+    #plt.show()
 
 
     graf = Graf(hull,factory)
     graf.make_graf()
 
     C = graf.apical_coverage()
-    print(C)
+    print()
+    print(graf.edges)
+    for i in graf.edges:
+        print(i[0],i[1],i[2])
+
+    #graf.print_graf()
+    #print("check")
+    #print(C)
+
     for i in C:
         print()
-        print(i.x, i.y)
-        for j in C[i]:
-            print(j.x, j.y, end='')
-            print(" ", end='')
-        print()
+        print(i)
+        print(C[i][0],end=" ")
+        print(C[i][1])
+
+    built = {key:False for key in C}
+
+    #print(built)
 
     through_put = Through_Put(plaszczaki)
     przepustowosc = through_put.count_through_put()
     print(przepustowosc)
 
+    for point in C:
+        if built[point] == False:
+            print()
+            
+            
 
     # graf.print_graf()
     

@@ -8,8 +8,6 @@ class Through_Put:
         self.plaszczaki = plaszczaki
     
     def count_through_put(self):
-        for i in self.plaszczaki:
-            print(i)
         g = FF(self.plaszczaki)
         #print("Maksymalna przepustowosc w sieci wynosi %d " % g.ford_fukelson(0, len(self.plaszczaki)-1))
         return g.ford_fukelson(0,len(self.plaszczaki)-1)
