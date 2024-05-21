@@ -48,6 +48,7 @@ if __name__ == "__main__":
     #plt.show()
 
 
+
     graf = Graf(hull,factory)
     graf.make_graf()
 
@@ -81,38 +82,45 @@ if __name__ == "__main__":
             
             
 
+
     # graf.print_graf()
-    
 
 
-    # filename = input("Podaj nazwe testu:")
 
-    # file_directory = f"/testy/problem_two/{filename}"
-    # file_worker.importfromFileProblemTwo(path + file_directory)
-    # melodyTab = file_worker.melodyTab
+    filename = input("Podaj nazwe testu:")
 
-    # for i in range(0,len(melodyTab)):
-    #     pattern_tab = []
-    #     melody = BoyerMoore(melodyTab[i],"poli")
-    #     melody.BM(pattern_tab)
-    #     changeText = ChangeText(melodyTab[i],pattern_tab)
-    #     changeText.change()
-    #     melodyTab[i] = changeText.text
+    file_directory = f"/testy/problem_two/{filename}"
+    file_worker.importfromFileProblemTwo(path + file_directory)
+    melodyTab = file_worker.melodyTab
 
-    # print("Naprawiona melodia:\n")
-    # for text in melodyTab:
-    #     print(text,end='')
-    # print()
+    patterns_tab = {}
+    word = input("Jaki wzorzec chcesz dodatkowo zmienić:")
+    pattern = input("Na jakie słowo:")
+    patterns_tab[word] = pattern
+    patterns_tab["poli"] = "boli"
 
-    # encoded_text_tab = []
-    # for text in melodyTab:
-    #     encoded_text, codebook = huffman_encoding(text)
-    #     encoded_text_tab.append(encoded_text)
-    # print()
-    # print("Zakodowana melodia:\n")
-    # for text in encoded_text_tab:
-    #     print(text)
-    # print()
+    for word,pattern in patterns_tab.items():
+        for i in range(0,len(melodyTab)):
+            pattern_tab = []
+            melody = BoyerMoore(melodyTab[i],word)
+            melody.BM(pattern_tab)
+            changeText = ChangeText(melodyTab[i],pattern_tab,pattern,word)
+            changeText.change()
+            melodyTab[i] = changeText.text
+    print("Naprawiona melodia:\n")
+    for text in melodyTab:
+        print(text,end='')
+    print()
+
+    encoded_text_tab = []
+    for text in melodyTab:
+        encoded_text, codebook = huffman_encoding(text)
+        encoded_text_tab.append(encoded_text)
+    print()
+    print("Zakodowana melodia:\n")
+    for text in encoded_text_tab:
+        print(text)
+    print()
 
     
 

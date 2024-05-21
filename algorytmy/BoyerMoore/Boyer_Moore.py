@@ -47,8 +47,6 @@ class BoyerMoore:
                 s += shift[0]
             else:
                 s += shift[j + 1]
-        if(pp == 0):
-            print("Wzorzec nie wystepuje w tekscie")
 
 if __name__ == "__main__":
     text = "W laboratorium chemik używał polimerów do stworzenia nowej polisyntezatorowej substancji."
