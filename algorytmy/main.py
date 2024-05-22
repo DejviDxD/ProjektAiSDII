@@ -56,7 +56,7 @@ if __name__ == "__main__":
     print()
     print(graf.edges)
     for i in graf.edges:
-        print(i[0],i[1],i[2])
+        print(i[0],i[1],i[2],i[3])
 
     #graf.print_graf()
     #print("check")
@@ -66,19 +66,21 @@ if __name__ == "__main__":
         print()
         print(i)
         print(C[i][0],end=" ")
-        print(C[i][1])
+        print(C[i][1],print(C[i][2]))
 
-    built = {key:False for key in C}
-
-    #print(built)
 
     through_put = Through_Put(plaszczaki)
     przepustowosc = through_put.count_through_put()
     print(przepustowosc)
 
-    for point in C:
-        if built[point] == False:
-            print()
+
+    for edge in graf.edges:
+        while(edge[2] > 0):
+            edge[2] -= przepustowosc
+        edge[3] = True
+    for i in graf.edges:
+        print(i[0],i[1],i[2],i[3])
+    
             
             
 

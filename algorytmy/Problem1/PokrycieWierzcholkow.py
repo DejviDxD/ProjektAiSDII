@@ -69,10 +69,12 @@ class Graf:
                 self.edges[i].append(min_distance_point)
                 self.edges[i].append(self.C[min_distance_point][1])
                 self.edges[i].append(math.sqrt(math.pow(self.edges[i][1].y - self.edges[i][0].y,2) + math.pow(self.edges[i][1].x - self.edges[i][0].x,2)))
+                self.edges[i].append(False)
                 self.edges.append([])
                 self.edges[i+1].append(min_distance_point)
                 self.edges[i+1].append(self.C[min_distance_point][0])
                 self.edges[i+1].append(math.sqrt(math.pow(self.edges[i+1][1].y - self.edges[i+1][0].y,2) + math.pow(self.edges[i+1][1].x - self.edges[i+1][0].x,2)))
+                self.edges[i+1].append(False)
             i+=2
         for edge in self.edges:
             for edge2 in self.edges:
