@@ -45,7 +45,7 @@ if __name__ == "__main__":
     plt.pause(0.1)
     plt.scatter(factory.x,factory.y, color="red")
     plt.savefig(f'{directory}/hull_step_final_factory.png')
-    #plt.show()
+    plt.show()
 
 
 
