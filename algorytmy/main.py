@@ -73,15 +73,45 @@ if __name__ == "__main__":
     przepustowosc = through_put.count_through_put()
     print(przepustowosc)
 
+    directory = path + '/Graham/Create_wall'
+    graham_hull.delete_hull_pictures(directory)
 
+    plt.scatter([p.x for p in points], [p.y for p in points], color="black")
+    plt.plot([p.x for p in hull], [p.y for p in hull], color="blue")
+    plt.scatter(factory.x, factory.y, color="red")
+
+
+    i = 0
+    j = 0
+    stack = []
+    factory_ways = []
     for edge in graf.edges:
+        factory_ways.append(factory)
+        factory_ways.append(edge[0])
+        plt.plot([p.x for p in factory_ways], [p.y for p in factory_ways], color="orange")
+        plt.xlabel('X')
+        plt.ylabel('Y')
+        plt.title("Tworzenie muru")
+        plt.savefig(f'{directory}/create_wall{j}.png')
+        plt.pause(2)
         while(edge[2] > 0):
             edge[2] -= przepustowosc
+            i += 1
+            stack.append(edge[0])
+            stack.append((edge[1]))
         edge[3] = True
+        plt.plot([p.x for p in stack], [p.y for p in stack], color="green")
+        plt.xlabel('X')
+        plt.ylabel('Y')
+        plt.title("Tworzenie muru")
+        plt.savefig(f'{directory}/create_wall{j}.png')
+        plt.pause(2)
+        i = 0
+        j += 1
     for i in graf.edges:
         print(i[0],i[1],i[2],i[3])
     
-            
+    plt.show()
             
 
 

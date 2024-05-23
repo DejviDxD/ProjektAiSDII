@@ -107,7 +107,7 @@ class Graham_hull:
         plt.xlabel('X')
         plt.ylabel('Y')
         plt.title("Otoczka wypukła")
-        plt.pause(0.5)
+        plt.pause(0.1)
 
 
 if __name__ == "__main__":
