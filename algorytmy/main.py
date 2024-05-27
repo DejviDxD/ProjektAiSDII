@@ -1,3 +1,5 @@
+import math
+
 from Geometryczne.CPoint import Point
 from Graham.CGraham_hull import Graham_hull
 from testy.FileWorker import FromFile
@@ -62,10 +64,13 @@ if __name__ == "__main__":
     #print("check")
     #print(C)
 
+    print("CCC")
     for i in C:
         print()
         print(i)
+        print()
         print(C[i][0],end=" ")
+        print()
         print(C[i][1],print(C[i][2]))
 
 
@@ -83,6 +88,8 @@ if __name__ == "__main__":
 
     i = 0
     j = 0
+    time_cost = 0.0
+    wall_length = 0
     stack = []
     factory_ways = []
     for edge in graf.edges:
@@ -93,26 +100,40 @@ if __name__ == "__main__":
         plt.ylabel('Y')
         plt.title("Tworzenie muru")
         plt.savefig(f'{directory}/create_wall{j}.png')
-        plt.pause(2)
+        plt.pause(0.5)
+        j += 1
+        time_cost += math.ceil(edge[2] / przepustowosc) * list(C.values())[i][2]
+        wall_length += edge[2]
+        i += 1
         while(edge[2] > 0):
             edge[2] -= przepustowosc
-            i += 1
             stack.append(edge[0])
             stack.append((edge[1]))
+            plt.plot([p.x for p in stack], [p.y for p in stack], color="red")
+            plt.xlabel('X')
+            plt.ylabel('Y')
+            plt.title("Tworzenie muru")
+            plt.savefig(f'{directory}/create_wall{j}.png')
+            plt.pause(0.5)
         edge[3] = True
+        factory_ways.pop()
         plt.plot([p.x for p in stack], [p.y for p in stack], color="green")
         plt.xlabel('X')
         plt.ylabel('Y')
         plt.title("Tworzenie muru")
         plt.savefig(f'{directory}/create_wall{j}.png')
-        plt.pause(2)
-        i = 0
+        plt.pause(0.5)
         j += 1
+        stack = []
     for i in graf.edges:
         print(i[0],i[1],i[2],i[3])
     
     plt.show()
-            
+
+    print()
+
+    print(f"Czas dostawy: {round(time_cost,2)}")
+    print(f"Długość muru: {wall_length}")
 
 
     # graf.print_graf()
