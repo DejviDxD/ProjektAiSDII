@@ -8,6 +8,7 @@ class FromFile:
         self.pointsTab = []
         self.melodyTab = []
         self.vertexTab = []
+        self.guardsTab = []
 
     def printPoints(self):
         for i in self.pointsTab:
@@ -51,6 +52,14 @@ class FromFile:
             if(len(line) == 0):
                 break
             self.melodyTab.append(line)
+
+    def importfromFileProblemThree(self,filename):
+        file = open(filename, 'r')
+        line = file.readline()
+        numberofguards = int(line)
+        for i in range(numberofguards):
+            line = file.readline()
+            self.guardsTab.append(int(line))
 
 
 

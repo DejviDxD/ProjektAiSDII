@@ -1,4 +1,5 @@
 import math
+import random
 
 from Geometryczne.CPoint import Point
 from Graham.CGraham_hull import Graham_hull
@@ -8,6 +9,7 @@ from BoyerMoore.Boyer_Moore import BoyerMoore
 from Huffmann.Huffmann import Huffman,huffman_decoding,huffman_encoding
 from Problem1.PokrycieWierzcholkow import Graf
 from Problem1.Przepustowosc import Through_Put
+from Problem3.GuardsWay import guardsWay
 
 import matplotlib.pyplot as plt
 import os
@@ -174,6 +176,26 @@ if __name__ == "__main__":
     for text in encoded_text_tab:
         print(text)
     print()
+
+    filename = input("Podaj nazwe testu:")
+    file_directory = f"/testy/problem_three/{filename}"
+    file_worker.importfromFileProblemThree(path + file_directory)
+    guardsTab = file_worker.guardsTab
+    lanternTab = []
+    for i in range(len(hull)):
+        lanternTab.append(random.randrange(3,15))
+
+    for i in range(7):
+        current_energy = max(guardsTab)
+        print("dnia ",i+1," idzie płaszczak z energią równą ",current_energy)
+        guardsWay(lanternTab,current_energy)
+        guardsTab.remove(current_energy)
+
+
+
+    #print(guardsTab)
+
+
 
     
 
