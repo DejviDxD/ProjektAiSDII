@@ -15,7 +15,6 @@ class GeometryFunctions:
         if((p2.x <= p1.x and p1.x < p3.x) or (p2.x >= p1.x and p1.y > (p2.y - p3.y)/(p2.x - p3.x) * (p1.x - p2.x) + p2.y)):
             return True
         return False
-    # def onPolygon(self):
 
     def isCuttingSections(self, p4: Point):
         det1 = p1.x * p2.y + p2.x * p3.y + p3.x * p1.y - p3.x * p2.y - p1.x * p3.y - p2.x * p1.y

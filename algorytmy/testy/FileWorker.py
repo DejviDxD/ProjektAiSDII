@@ -33,7 +33,6 @@ class FromFile:
             self.vertexTab[0][edge[0]] = 1
             self.vertexTab[edge[1]][numberOfVertex+1] = 1
             self.vertexTab[edge[0]][edge[1]] = 1
-            # self.vertexTab[edge[1]][edge[0]] = 1
         line = file.readline()
         numberOfPoints = int(line)
         for i in range(numberOfPoints):

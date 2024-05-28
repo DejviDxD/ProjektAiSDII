@@ -16,6 +16,9 @@ import os
 
 if __name__ == "__main__":
     path = os.path.dirname(os.path.abspath(__file__))
+
+
+    #problem 1
     filename = input("Podaj nazwe testu:")
     file_directory = f"/testy/problem_one/{filename}"
     file_worker = FromFile()
@@ -57,28 +60,11 @@ if __name__ == "__main__":
     graf.make_graf()
 
     C = graf.apical_coverage()
-    print()
-    print(graf.edges)
-    for i in graf.edges:
-        print(i[0],i[1],i[2],i[3])
 
-    #graf.print_graf()
-    #print("check")
-    #print(C)
-
-    print("CCC")
-    for i in C:
-        print()
-        print(i)
-        print()
-        print(C[i][0],end=" ")
-        print()
-        print(C[i][1],print(C[i][2]))
 
 
     through_put = Through_Put(plaszczaki)
     przepustowosc = through_put.count_through_put()
-    print(przepustowosc)
 
     directory = path + '/Graham/Create_wall'
     graham_hull.delete_hull_pictures(directory)
@@ -88,7 +74,6 @@ if __name__ == "__main__":
     plt.scatter(factory.x, factory.y, color="red")
 
 
-    i = 0
     j = 0
     time_cost = 0.0
     wall_length = 0
@@ -106,7 +91,6 @@ if __name__ == "__main__":
         j += 1
         time_cost += math.ceil(edge[2] / przepustowosc) * list(C.values())[i][2]
         wall_length += edge[2]
-        i += 1
         while(edge[2] > 0):
             edge[2] -= przepustowosc
             stack.append(edge[0])
@@ -127,8 +111,6 @@ if __name__ == "__main__":
         plt.pause(0.5)
         j += 1
         stack = []
-    for i in graf.edges:
-        print(i[0],i[1],i[2],i[3])
     
     plt.show()
 
@@ -138,10 +120,8 @@ if __name__ == "__main__":
     print(f"Długość muru: {wall_length}")
 
 
-    # graf.print_graf()
 
-
-
+    #problem 2
     filename = input("Podaj nazwe testu:")
 
     file_directory = f"/testy/problem_two/{filename}"
@@ -177,6 +157,8 @@ if __name__ == "__main__":
         print(text)
     print()
 
+
+    #problem 3
     filename = input("Podaj nazwe testu:")
     file_directory = f"/testy/problem_three/{filename}"
     file_worker.importfromFileProblemThree(path + file_directory)
@@ -191,9 +173,6 @@ if __name__ == "__main__":
         guardsWay(lanternTab,current_energy)
         guardsTab.remove(current_energy)
 
-
-
-    #print(guardsTab)
 
 
 
