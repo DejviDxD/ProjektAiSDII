@@ -18,15 +18,18 @@ if __name__ == "__main__":
     path = os.path.dirname(os.path.abspath(__file__))
 
 
-    #problem 1
+    #Problem 1
     filename = input("Podaj nazwe testu:")
     file_directory = f"/testy/problem_one/{filename}"
+
+    #Pobieranie danych do problemu 1
     file_worker = FromFile()
     file_worker.importfromFileProblemOne(path + file_directory)
+
     points = file_worker.pointsTab
     plaszczaki = file_worker.vertexTab
 
-
+    #Tworzenie otoczki wypukłej wraz z animacją graficzną
     graham_hull = Graham_hull(points)
     directory = path + '/Graham/Hull_pictures'
     graham_hull.delete_hull_pictures(directory)
@@ -43,6 +46,8 @@ if __name__ == "__main__":
     plt.ylabel('Y')
     plt.title("Otoczka wypukła")
     plt.savefig(f'{directory}/hull_step_final.png')
+
+    #Ustawienie punktu fabryki
     factory = points[0]
     if(factory in hull):
         for i in range(1,len(points)):
@@ -55,17 +60,17 @@ if __name__ == "__main__":
     plt.show()
 
 
-
+    #Utworzenie drogi dla plaszczaków
     graf = Graf(hull,factory)
     graf.make_graf()
-
     C = graf.apical_coverage()
-
 
 
     through_put = Through_Put(plaszczaki)
     przepustowosc = through_put.count_through_put()
 
+
+    #Tworzenie animacji dla trasy płaszczaków w budowaniu muru wraz z wynikiem pierwszego problemu
     directory = path + '/Graham/Create_wall'
     graham_hull.delete_hull_pictures(directory)
 
@@ -115,16 +120,17 @@ if __name__ == "__main__":
     plt.show()
 
     print()
-
     print(f"Czas dostawy: {round(time_cost,2)}")
     print(f"Długość muru: {wall_length}")
 
 
 
-    #problem 2
+    #Problem 2
     filename = input("Podaj nazwe testu:")
 
     file_directory = f"/testy/problem_two/{filename}"
+
+    #Pobranie danych do problemu 2
     file_worker.importfromFileProblemTwo(path + file_directory)
     melodyTab = file_worker.melodyTab
 
@@ -134,6 +140,7 @@ if __name__ == "__main__":
     patterns_tab[word] = pattern
     patterns_tab["poli"] = "boli"
 
+    #Zamiana słów w melodii
     for word,pattern in patterns_tab.items():
         for i in range(0,len(melodyTab)):
             pattern_tab = []
@@ -147,6 +154,8 @@ if __name__ == "__main__":
         print(text,end='')
     print()
 
+
+    #Zakodowanie melodii
     encoded_text_tab = []
     for text in melodyTab:
         encoded_text, codebook = huffman_encoding(text)
@@ -158,11 +167,15 @@ if __name__ == "__main__":
     print()
 
 
-    #problem 3
+    #Problem 3
     filename = input("Podaj nazwe testu:")
     file_directory = f"/testy/problem_three/{filename}"
+
+    #Pobranie danych do Problemu 3
     file_worker.importfromFileProblemThree(path + file_directory)
     guardsTab = file_worker.guardsTab
+
+    #Ustalenie grafiku
     lanternTab = []
     for i in range(len(hull)):
         lanternTab.append(random.randrange(3,15))
