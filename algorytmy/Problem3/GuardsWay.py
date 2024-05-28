@@ -1,6 +1,6 @@
 def guardsWay(lanternTab,guards_energy):
     max_distance = 2 + (guards_energy-1)//5
-    print(max_distance," dystans")
+    #print(max_distance," dystans")
     current_place = 0
     lace_before = current_place
     current_place = maks(lanternTab, 0, max_distance, 15)
