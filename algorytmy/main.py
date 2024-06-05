@@ -19,6 +19,7 @@ if __name__ == "__main__":
 
 
     #Problem 1
+    print("Problem 1")
     filename = input("Podaj nazwe testu:")
     file_directory = f"/testy/problem_one/{filename}"
 
@@ -44,7 +45,7 @@ if __name__ == "__main__":
     plt.plot([p.x for p in hull], [p.y for p in hull], color="blue")
     plt.xlabel('X')
     plt.ylabel('Y')
-    plt.title("Otoczka wypukła")
+    plt.title("Wstępne projektowanie muru")
     plt.savefig(f'{directory}/hull_step_final.png')
 
     #Ustawienie punktu fabryki
@@ -126,6 +127,7 @@ if __name__ == "__main__":
 
 
     #Problem 2
+    print("Problem 2")
     filename = input("Podaj nazwe testu:")
 
     file_directory = f"/testy/problem_two/{filename}"
@@ -135,8 +137,9 @@ if __name__ == "__main__":
     melodyTab = file_worker.melodyTab
 
     patterns_tab = {}
-    word = input("Jaki wzorzec chcesz dodatkowo zmienić:")
-    pattern = input("Na jakie słowo:")
+    print("Standardowo zamieniamy 'poli' na 'boli' ale płaszczak ma możliwość wybrania swojego słowa na zamianę.")
+    word = input("Jaki wzorzec chcesz dodatkowo zmienić: ")
+    pattern = input("Na jakie słowo: ")
     patterns_tab[word] = pattern
     patterns_tab["poli"] = "boli"
 
@@ -168,6 +171,7 @@ if __name__ == "__main__":
 
 
     #Problem 3
+    print("Problem 3")
     filename = input("Podaj nazwe testu:")
     file_directory = f"/testy/problem_three/{filename}"
 

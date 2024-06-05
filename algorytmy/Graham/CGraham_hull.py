@@ -106,7 +106,7 @@ class Graham_hull:
         plt.plot([p.x for p in hull], [p.y for p in hull], color="blue")
         plt.xlabel('X')
         plt.ylabel('Y')
-        plt.title("Otoczka wypukła")
+        plt.title("Wstępne projektowanie muru")
         plt.pause(0.5)
 
 
