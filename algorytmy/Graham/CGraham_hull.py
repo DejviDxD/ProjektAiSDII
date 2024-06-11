@@ -15,6 +15,9 @@ class Graham_hull:
         for filename in os.listdir(directory):
             if filename.startswith('hull_'):
                 os.remove(os.path.join(directory,filename))
+        for filename in os.listdir(directory):
+            if filename.startswith('create_'):
+                os.remove((os.path.join(directory,filename)))
 
 
     def cross_product(self,p1: Point,p2: Point):
