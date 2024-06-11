@@ -180,15 +180,41 @@ if __name__ == "__main__":
     guardsTab = file_worker.guardsTab
 
     #Ustalenie grafiku
-    lanternTab = []
+    lanternTab = []                                     #lista z wartosciami jasnosci pnktów
+    guardsdict = {i:0 for i in range(len(guardsTab))}   #słownik ze straznikami
+    schedule = []                                       #grafik
+    melody_count_tab = []                               #lista z liczba odsłuchań melodii
+
+    #uzupełnanie słownika
+    for i in range(len(guardsTab)):
+        guardsdict[i] = guardsTab[i]
+
+    #losowanie wartości jasności
     for i in range(len(hull)):
         lanternTab.append(random.randrange(3,15))
 
-    for i in range(7):
+    #informacje dla użytkownika
+    print("W tym tygodniu jasnosc punktow muru to: ")
+    for i in lanternTab:
+        print(i,end=" ")
+    print(" ")
+
+    #ustalanie grafiku
+    for j in range(7):
         current_energy = max(guardsTab)
-        print("dnia ",i+1," idzie płaszczak z energią równą ",current_energy)
-        guardsWay(lanternTab,current_energy)
+        for i in guardsdict:
+            if(guardsdict[i] == current_energy and i not in schedule):
+                schedule.append(i)
+                break
+        #print("dnia ",j+1," idzie płaszczak z energią równą ",current_energy)
         guardsTab.remove(current_energy)
+        melody_count_tab.append(guardsWay(lanternTab, current_energy))
+
+    #wpisanie grafiku
+    print("grafik wyglada tak")
+    for i in range(7):
+        print("dzien " + str(i+1) +" straznik nr "+ str(schedule[i]) +" odsluchań " + str(melody_count_tab[i]))
+
 
 
 

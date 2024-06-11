@@ -1,28 +1,27 @@
-def guardsWay(lanternTab,guards_energy):
+def guardsWay(lanternTab,guards_energy): #ustalanie przejscia straznika
     max_distance = 2 + (guards_energy-1)//5
-    #print(max_distance," dystans")
+    melody_count = 0
     current_place = 0
     lace_before = current_place
     current_place = maks(lanternTab, 0, max_distance, 15)
-    print("zatrzymanie  1  w punkcie ",current_place," który ma jasnosc ",lanternTab[current_place])
+    #print("zatrzymanie  1  w punkcie ",current_place," który ma jasnosc ",lanternTab[current_place])
     i = 1
     while (current_place+1 < len(lanternTab) and i < len(lanternTab)) :
         i+=1
         place_before = current_place
         current_place = maks(lanternTab, place_before + 1, place_before + max_distance + 1, lanternTab[place_before])
         if(lanternTab[current_place] > lanternTab[place_before]):
-            print("zatrzymanie ", i, " w punkcie ", current_place, " który ma jasnosc ", lanternTab[current_place]," przerwa na sluchanie muzyki")
-        else:
-            print("zatrzymanie ",i," w punkcie ", current_place, " który ma jasnosc ", lanternTab[current_place])
+            #print("zatrzymanie ", i, " w punkcie ", current_place, " który ma jasnosc ", lanternTab[current_place]," przerwa na sluchanie muzyki")
+            melody_count += 1
+        #else:
+            #print("zatrzymanie ",i," w punkcie ", current_place, " który ma jasnosc ", lanternTab[current_place])
+    return melody_count
 
 
-def maks(tab,start,stop,value):
+def maks(tab,start,stop,value): #liczenie maksa
     result = tab[start]
     index = start
-    #print(value,"= VAL")
     for i in range(start,stop):
-        #print("\n",i)
-        #print("res =",result)
         if(i >= len(tab)):
             break
         if(result > value and tab[i] < value):
@@ -31,10 +30,8 @@ def maks(tab,start,stop,value):
         if(tab[i] > result and tab[i] <= value):
             result = tab[i]
             index = i
-            #print(result,"3")
-    #print(index)
+
     if(tab[index] > value):
-        #print(tab[index], "> ", value)
         return maks(tab,start,stop,15)
     return index
 
