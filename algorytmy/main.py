@@ -93,7 +93,7 @@ if __name__ == "__main__":
         plt.ylabel('Y')
         plt.title("Tworzenie muru")
         plt.savefig(f'{directory}/create_wall{j}.png')
-        plt.pause(0.5)
+        plt.pause(1)
         j += 1
         time_cost += math.ceil(edge[2] / przepustowosc) * list(C.values())[i][2]
         wall_length += edge[2]
@@ -106,7 +106,7 @@ if __name__ == "__main__":
             plt.ylabel('Y')
             plt.title("Tworzenie muru")
             plt.savefig(f'{directory}/create_wall{j}.png')
-            plt.pause(0.5)
+            plt.pause(1)
         edge[3] = True
         factory_ways.pop()
         plt.plot([p.x for p in stack], [p.y for p in stack], color="green")
@@ -114,7 +114,7 @@ if __name__ == "__main__":
         plt.ylabel('Y')
         plt.title("Tworzenie muru")
         plt.savefig(f'{directory}/create_wall{j}.png')
-        plt.pause(0.5)
+        plt.pause(1)
         j += 1
         stack = []
     
@@ -135,6 +135,13 @@ if __name__ == "__main__":
     #Pobranie danych do problemu 2
     file_worker.importfromFileProblemTwo(path + file_directory)
     melodyTab = file_worker.melodyTab
+
+    # Wyświetlenie nie naprawionej jeszcze melody
+    print("Melodia:")
+    for text in melodyTab:
+        print(text, end='')
+    print()
+    print()
 
     patterns_tab = {}
     print("Standardowo zamieniamy 'poli' na 'boli' ale płaszczak ma możliwość wybrania swojego słowa na zamianę.")
