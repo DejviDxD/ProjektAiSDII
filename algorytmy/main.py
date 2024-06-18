@@ -197,13 +197,13 @@ if __name__ == "__main__":
         guardsdict[i] = guardsTab[i]
 
     #losowanie wartości jasności
-    for i in range(len(hull)):
-        lanternTab.append(random.randrange(3,15))
+    for i in range(len(hull)-1):
+        lanternTab.append(random.randrange(1,15))
 
     #informacje dla użytkownika
     print("W tym tygodniu jasnosc punktow muru to: ")
     for i in lanternTab:
-        print(i,end=" ")
+        print(i,end=", ")
     print(" ")
 
     #ustalanie grafiku
